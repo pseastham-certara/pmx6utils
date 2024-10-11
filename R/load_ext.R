@@ -1,6 +1,3 @@
-
-library(MASS)
-
 get_THETA_names_from_tv.ext = function(tv.ext) {
   THETA_names = grep("THETA*", names(tv.ext), value=T, invert=F)
   return(THETA_names)
@@ -106,11 +103,12 @@ get_omega_dim_from_tv.ext = function(tv.ext) {
 #'
 #' @param tv.ext dataframe object from loading NONMEM ext file
 #' @param n.sims An int for number of rows in dataframe
+#' @param ETA_names Boolean to determine what column names of ETA are
 #'
 #' @importFrom MASS mvrnorm
 #' @importFrom magrittr %<>%
 #' @export
-generate_OMEGA_covariate_matrix = function(tv.ext, n.sims) {
+generate_OMEGA_covariate_matrix = function(tv.ext, n.sims, ETA_names=FALSE) {
   # generate full OMEGA matrix
   omega = generate_IIV_matrix_from_tv.ext(tv.ext)
   nIIV  = get_omega_dim_from_tv.ext(tv.ext)
@@ -148,6 +146,12 @@ generate_OMEGA_covariate_matrix = function(tv.ext, n.sims) {
 
   # add names back (necessary if some columns are zeros)
   colnames(ETA) = omega_names
+
+  if (ETA_names) {
+    colnames(ETA) = paste0("ETA", 1:nIIV)
+  }
+
+  ETA %<>% as.data.frame()
 
   return(ETA)
 }
