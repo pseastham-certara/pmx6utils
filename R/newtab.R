@@ -38,13 +38,27 @@ newtab = function(title="Tab", header=2, nonumber=T, subtabs=F, pills=F) {
   cat("  \n\n")
 }
 
+#' Creates a new Rmarkdown tab at level 1
+#' @param ... Same arguments as newtab
 #' @export
 newtab1 = function(...) newtab(header=1, ...)
+
+#' Creates a new Rmarkdown tab at level 2
+#' @param ... Same arguments as newtab
 #' @export
 newtab2 = function(...) newtab(header=2, ...)
+
+#' Creates a new Rmarkdown tab at level 3
+#' @param ... Same arguments as newtab
 #' @export
 newtab3 = function(...) newtab(header=3, ...)
+
+#' Creates a new Rmarkdown tab at level 4
+#' @param ... Same arguments as newtab
 #' @export
 newtab4 = function(...) newtab(header=4, ...)
+
+#' Creates a new Rmarkdown tab at level 5
+#' @param ... Same arguments as newtab
 #' @export
 newtab5 = function(...) newtab(header=5, ...)
